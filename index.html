@@ -151,6 +151,8 @@ const MO=['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec
 const pad=n=>String(n).padStart(2,'0'),iso=(w,k=0)=>new Date(Date.UTC(2024,0,1+w*7+k)).toISOString().slice(0,10);
 const today=()=>{const t=new Date();return`${t.getFullYear()}-${pad(t.getMonth()+1)}-${pad(t.getDate())}`};
 const U=s=>new Date(s+'T00:00:00Z');
+// Week index used by the demo data
+const cw=()=>Math.floor((U(today())-U('2024-01-01'))/604800000);
 function wl(w){const s=U(iso(w)),e=U(iso(w,4)),m=d=>MO[d.getUTCMonth()];return s.getUTCMonth()===e.getUTCMonth()?`${s.getUTCDate()}–${e.getUTCDate()} ${m(e)}`:`${s.getUTCDate()} ${m(s)} – ${e.getUTCDate()} ${m(e)}`}
 const fd=s=>{const d=U(s);return`${DY[d.getUTCDay()]} ${d.getUTCDate()} ${MO[d.getUTCMonth()]}`};
 const fs=s=>{const d=U(s);return`${d.getUTCDate()} ${MO[d.getUTCMonth()]}${s.slice(0,4)!==today().slice(0,4)?' '+s.slice(0,4):''}`};
